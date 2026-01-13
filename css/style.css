@@ -13,7 +13,9 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 2rem;
+    padding-top: 0rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
 }
 
 .container {
@@ -22,6 +24,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    position:relative;
 }
 
 .project-group {
@@ -94,17 +97,18 @@ body {
 .video-page {
     width: 100%;
     margin: 0 auto;
-    padding: 2rem 0;
+    padding: 1rem 0;
 }
 
 .page-header {
     text-align: center;
-    margin-bottom: 3rem;
+    padding-top: 0.3rem;
+    margin-bottom: 1rem;
 }
 
 .page-footer {
     text-align: center;
-    margin-top: 4rem;
+    margin-top: 1rem;
 }
 
 .page-title {
@@ -113,6 +117,18 @@ body {
     letter-spacing: 4px;
     margin-bottom: 1rem;
 }
+
+.page-description {
+    max-width: 800px;
+    margin: 0 auto 3rem auto; 
+    font-weight: 300;
+    text-align: center;
+    color: #999999;
+    font-size: 0.95rem;
+    line-height: 1.8;
+    letter-spacing: 0.5px;
+    padding: 0.5rem 2rem;
+    }
 
 .back-link {
     display: inline-block;

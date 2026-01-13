@@ -20,11 +20,16 @@
             justify-content: center;
             align-items: center;
             background-color: #000000;
+            padding: 0rem;
+            min-height: 0;
         }
 
         .photo-container img {
-            width: 100%;
+            max-width: 100%;
+            max-height: calc(100vh - 200px);
+            width: auto;
             height: auto;
+            object-fit: contain;
             display: none;
         }
 
@@ -42,8 +47,8 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 3rem;
-            padding: 2rem 0;
+            gap: 2rem;
+            padding: 1rem 0;
         }
 
         .nav-arrow {
@@ -54,7 +59,7 @@
             cursor: pointer;
             transition: color 0.3s ease;
             user-select: none;
-            padding: 0.5rem 1rem;
+            padding: 0rem 1rem;
         }
 
         .nav-arrow:hover {
@@ -77,6 +82,16 @@
 
             .nav-arrow {
                 font-size: 2rem;
+            }
+
+            .photo-container img {
+                max-height: calc(100vh - 180px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .photo-container img {
+                max-height: calc(100vh - 160px);
             }
         }
     </style>
@@ -139,6 +154,33 @@
                 changePhoto(1);
             }
         });
+
+        // Touch navigation
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.querySelector('.photo-container').addEventListener('touchstart', function(event) {
+            touchStartX = event.changedTouches[0].screenX;
+        });
+        document.querySelector('.photo-container').addEventListener('touchend', function(event) {
+            touchEndX = event.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const swipeThreshold = 50; // minimum distance for a swipe (in pixels)
+            const difference = touchStartX - touchEndX;
+            
+            if (Math.abs(difference) > swipeThreshold) {
+                if (difference > 0) {
+                    // Swiped left - go to next photo
+                    changePhoto(1);
+                } else {
+                    // Swiped right - go to previous photo
+                    changePhoto(-1);
+                }
+            }
+        }
     </script>
 </body>
 </html>

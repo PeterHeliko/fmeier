@@ -74,7 +74,7 @@
             aspect-ratio: 16/10;
             border: 1px solid #333333;
             overflow: hidden;
-            margin-bottom: 1.5rem;
+            margin-bottom: 0.5rem;
             position: relative;
             background-color: #0a0a0a;
         }
@@ -100,7 +100,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 2rem;
+            gap: 1rem;
         }
 
         .showcase-arrow {
@@ -202,9 +202,9 @@
             <div class="bio-text">
                 <p>Florian Meier genoss eine umfassende pianistische Ausbildung an der HSLU Musik:</p>
                 <ul style="margin-left: 1.5rem; margin-bottom: 1.2rem;">
-                    <li style="margin-bottom: 0.5rem;">Bachelor if Arts in Music 2014-2017</li>
-                    <li style="margin-bottom: 0.5rem;">Master of Arts in Music Performance 2017-2019</li>
                     <li style="margin-bottom: 0.5rem;">Master of Arts in Musikpädagogik 2019-2021</li>
+                    <li style="margin-bottom: 0.5rem;">Master of Arts in Music Performance 2017-2019</li>
+                    <li style="margin-bottom: 0.5rem;">Bachelor if Arts in Music 2014-2017</li>                  
                 </ul>
                 <p>Seither konzentriert sich seine pianistische Tätigkeit auf ausgewählte, interdisziplinäre und aussergewöhnliche Projekte.</p>
                 <p>Ausserdem unterrichtet er mit Leidenschaft an der Musikschule Sarnen OW.</p>
@@ -233,7 +233,7 @@
                 <div class="showcase-text">
                     <h2 class="showcase-title">Kulinarische Préludes</h2>
                     <div class="showcase-description">
-                        <p>Chopin’s 24 Préludes op. 28 offenbaren in kürzester Zeit jeweils verblüffend tiefe Einblicke in die unterschiedlichtsen musikalischen Welten.</p>
+                        <p>Chopin’s 24 Préludes op. 28 offenbaren in kürzester Zeit jeweils verblüffend tiefe Einblicke in die unterschiedlichsten musikalischen Welten.</p>
                         <p>Diese äusserst dichten Miniaturwelten wurden in Verbindung mit jeweils einem passenden Häppchen oder Getränk auf vertiefte und Sinneserweiternde Art erfahrbar gemacht.</p>
                     </div>
                 </div>
@@ -300,6 +300,31 @@
             photos[showcaseStates[showcaseId]].classList.add('active');
             controls.querySelector('.current').textContent = showcaseStates[showcaseId] + 1;
         }
+
+        //Touch controls
+        function AddSwipesToShowcases() {
+            document.querySelectorAll('.showcase-photo-container').forEach(container => {
+                const showcaseId = parseInt(container.getAttribute('data-showcase'));
+                let touchStartX = 0;
+                
+                container.addEventListener('touchstart', (e) => {
+                    touchStartX = e.changedTouches[0].screenX;
+                });
+                
+                container.addEventListener('touchend', (e) => {
+                    const diff = touchStartX - e.changedTouches[0].screenX;
+                    if (Math.abs(diff) > 50) {
+                        changeShowcasePhoto(showcaseId, diff > 0 ? 1 : -1);
+                    }
+                });
+            });
+        }
+
+        // Call once when page loads
+        AddSwipesToShowcases();
+
+
+
     </script>
 </body>
 </html>
