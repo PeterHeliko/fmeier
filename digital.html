@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>digital</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .digital-page {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .page-header {
+            position: fixed;
+            top: 2rem;
+            left: 0;
+            right: 0;
+            text-align: center;
+        }
+
+        .digital-links {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+            max-width: 800px;
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .digital-links {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                max-width: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="digital-page">
+        <header class="page-header">
+            <h1 class="page-title">digital</h1>
+            <a href="index.html" class="back-link">&lt; ZURÜCK</a>
+        </header>
+
+        <div class="digital-links">
+            <a href="https://peterheliko.github.io/show-piano/" target="_blank" class="project-card">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.5">
+                    <!-- Piano outline -->
+                    <rect x="4" y="6" width="16" height="12" rx="1"/>
+                    <!-- White key dividers -->
+                    <line x1="8" y1="6" x2="8" y2="18"/>
+                    <line x1="12" y1="6" x2="12" y2="18"/>
+                    <line x1="16" y1="6" x2="16" y2="18"/>
+                    <!-- Black keys aligned with gaps -->
+                    <rect x="7" y="6" width="2" height="6" fill="currentColor"/>
+                    <rect x="11" y="6" width="2" height="6" fill="currentColor"/>
+                    <rect x="15" y="6" width="2" height="6" fill="currentColor"/>
+                </svg>
+                <h2 class="project-title">show-piano</h2>
+            </a>
+
+            <a href="https://erbs-schaft.ch" target="_blank" class="project-card">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.5">
+                    <!-- Circle with peas -->
+                    <circle cx="12" cy="12" r="9"/>
+                    <circle cx="12" cy="8" r="1.2" fill="currentColor"/>
+                    <circle cx="15.5" cy="10" r="1.2" fill="currentColor"/>
+                    <circle cx="15.5" cy="14" r="1.2" fill="currentColor"/>
+                    <circle cx="12" cy="16" r="1.2" fill="currentColor"/>
+                    <circle cx="8.5" cy="14" r="1.2" fill="currentColor"/>
+                    <circle cx="8.5" cy="10" r="1.2" fill="currentColor"/>
+                </svg>
+                <h2 class="project-title">Erbschafts-Simulator</h2>
+            </a>
+        </div>
+    </div>
+</body>
+</html>
