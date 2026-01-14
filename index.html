@@ -72,6 +72,99 @@
                 <h2 class="project-title">fotografie</h2>
             </a>
         </div>
+        <!-- Contact Button -->
+        <button class="contact-button" onclick="openContactModal()">kontakt</button>
     </div>
+
+
+
+<!-- Contact Modal -->
+<div class="contact-modal" id="contactModal">
+    <div class="contact-modal-content">
+        <button class="contact-close" onclick="closeContactModal()">&times;</button>
+        <h2>kontakt</h2>
+            <form action="https://api.web3forms.com/submit" method="POST" id="contactForm">
+                <input type="hidden" name="access_key" value="9d22ee42-4733-418e-9628-7926fed776da">
+                <input type="hidden" name="redirect" value="false">
+                <input type="text" name="name" placeholder="Name" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <textarea name="message" placeholder="Nachricht" required></textarea>
+                <button type="submit" id="submitBtn">senden</button>
+                <div class="form-message" id="formMessage"></div>
+            </form>
+    </div>
+</div>
+
+<script>
+function openContactModal() {
+    document.getElementById('contactModal').classList.add('active');
+}
+
+function closeContactModal() {
+    document.getElementById('contactModal').classList.remove('active');
+    // Reset form and message when closing
+    document.getElementById('contactForm').reset();
+    const message = document.getElementById('formMessage');
+    message.classList.remove('show', 'success', 'error');
+}
+
+// Close modal when clicking outside
+document.getElementById('contactModal').addEventListener('click', function(e) {
+    if (e.target === this) {
+        closeContactModal();
+    }
+});
+
+// Close modal with Escape key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closeContactModal();
+    }
+});
+
+// Handle form submission
+document.getElementById('contactForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const form = e.target;
+    const submitBtn = document.getElementById('submitBtn');
+    const message = document.getElementById('formMessage');
+    const formData = new FormData(form);
+    
+    // Show loading state
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'wird gesendet...';
+    message.classList.remove('show', 'success', 'error');
+    
+    try {
+        const response = await fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            body: formData
+        });
+        
+        const data = await response.json();
+        
+        if (data.success) {
+            message.textContent = 'Nachricht erfolgreich gesendet!';
+            message.classList.add('show', 'success');
+            form.reset();
+            
+            // Auto-close modal after 2 seconds
+            setTimeout(() => {
+                closeContactModal();
+            }, 2000);
+        } else {
+            throw new Error('Submission failed');
+        }
+    } catch (error) {
+        message.textContent = 'Fehler beim senden. Bitte versuchen sie es erneut.';
+        message.classList.add('show', 'error');
+    } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'senden';
+    }
+});
+</script>
+    
 </body>
 </html>

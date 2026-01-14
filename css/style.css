@@ -38,7 +38,7 @@ body {
 .project-group.secondary {
     grid-template-columns: repeat(2, 1fr);
     width: 50%;
-    margin-bottom: 0;
+    margin-bottom: 4rem;
     opacity: 0.4;
     transition: opacity 0.3s ease;
 }
@@ -182,6 +182,156 @@ body {
     height: 100%;
 }
 
+/* Contact button */
+.contact-button {
+    margin-top: 0rem;
+    margin-bottom: 2rem;
+    background: none;
+    border: 1px solid #333333;
+    color: #666666;
+    padding: 0.8rem 1.5rem;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    text-transform: lowercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.contact-button:hover {
+    border-color: #666666;
+    color: #ffffff;
+}
+
+/* Contact modal overlay */
+.contact-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+.contact-modal.active {
+    display: flex;
+}
+
+.contact-modal-content {
+    background-color: #000000;
+    border: 1px solid #333333;
+    padding: 3rem;
+    max-width: 500px;
+    width: 100%;
+    position: relative;
+}
+
+.contact-close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: none;
+    border: none;
+    color: #666666;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.contact-close:hover {
+    color: #ffffff;
+}
+
+.contact-modal h2 {
+    font-size: 1.5rem;
+    font-weight: 300;
+    letter-spacing: 3px;
+    margin-bottom: 2rem;
+    text-transform: lowercase;
+}
+
+.contact-modal form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.contact-modal input,
+.contact-modal textarea {
+    background-color: #000000;
+    border: 1px solid #333333;
+    color: #ffffff;
+    padding: 0.8rem;
+    font-family: inherit;
+    font-size: 0.9rem;
+    transition: border-color 0.3s ease;
+}
+
+.contact-modal input:focus,
+.contact-modal textarea:focus {
+    outline: none;
+    border-color: #666666;
+}
+
+.contact-modal textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.contact-modal button[type="submit"] {
+    background: none;
+    border: 1px solid #333333;
+    color: #666666;
+    padding: 0.8rem;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    text-transform: lowercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.contact-modal button[type="submit"]:hover {
+    border-color: #666666;
+    color: #ffffff;
+}
+
+/* Form submission messages */
+.form-message {
+    margin-top: 1rem;
+    padding: 0.8rem;
+    text-align: center;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.form-message.show {
+    opacity: 1;
+}
+
+.form-message.success {
+    border: 1px solid #4a7c59;
+    color: #7fbf7f;
+}
+
+.form-message.error {
+    border: 1px solid #7c4a4a;
+    color: #bf7f7f;
+}
+
+/* Loading state for submit button */
+.contact-modal button[type="submit"]:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
 /* Responsive Design */
 @media (max-width: 1024px) {
     .project-title {
@@ -202,6 +352,7 @@ body {
 
     .project-group.secondary {
         width: 100%;
+        margin-bottom: 3rem;
     }
 
     .project-title {
@@ -210,6 +361,17 @@ body {
 
     .page-title {
         font-size: 2rem;
+    }
+
+    .contact-button {
+    bottom: 1.5rem;
+    right: 1.5rem;
+    padding: 0.7rem 1.2rem;
+    font-size: 0.8rem;
+    }
+
+    .contact-modal-content {
+        padding: 2rem;
     }
 }
 
